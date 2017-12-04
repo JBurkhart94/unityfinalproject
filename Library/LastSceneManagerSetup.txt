@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Akiba_Battle/Akiba.unity
+- path: Assets/Main.unity
   isLoaded: 1
   isActive: 1
