@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class villian_script : MonoBehaviour {
 	public Animator anim;
+    public ParticleSystem healing;
 	public float speed;
 	float turning;
 	bool kick;
@@ -17,6 +18,8 @@ public class villian_script : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		anim = GetComponent<Animator> ();
+        healing = GetComponentInChildren<ParticleSystem>();
+        healing.Stop();
 		damage = 0;
 		speed = 0f;
 		turning = 0f;
@@ -25,9 +28,33 @@ public class villian_script : MonoBehaviour {
         turn = new Vector3();
         slide = false;
 	}
-	
-	// Update is called once per frame
-	void Update () {
+
+    void Update()
+    {
+        Collisions();
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            kick = true;
+        }
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            slide = true;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            Healing_Start();
+        }
+        if (Input.GetKeyUp(KeyCode.Alpha1))
+        {
+            Healing_End();
+        }
+
+        updateParam();
+
+    }
+
+    // Update is called once per frame
+    void FixedUpdate () {
 		reset ();
 		speed = Input.GetAxis ("Vertical");
 		turning = Input.GetAxis ("Horizontal");
@@ -65,11 +92,7 @@ public class villian_script : MonoBehaviour {
                 mov = new Vector3(0, 0, 0);
                 transform.Translate(mov);
             }
-
-
-            updateParam();
         
-       
 	}
 
 
@@ -96,8 +119,17 @@ public class villian_script : MonoBehaviour {
 			damage = 10;
 		}
 	}
-
-	void reset (){
+    void Healing_Start()
+    {
+        healing.Play();
+        healing.enableEmission = false;
+    }
+    void Healing_End()
+    {
+        healing.enableEmission = false;
+        healing.Stop();
+    }
+    void reset (){
 		damage = 0;
 		kick = false;
 		slide = false;
