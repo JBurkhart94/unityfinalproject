@@ -3,21 +3,36 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class villian_script : MonoBehaviour {
+	public int hp;
+
 	public Animator anim;
+	GameObject cam;
     public ParticleSystem healing;
 	public float speed;
 	float turning;
-	bool kick;
+	public bool kick;
+	public bool power;
 	bool slide;
     public bool collision;
-	int damage;
+	public int damage;
 	Vector3 mov;
     Vector3 turn;
     public Vector3 contact;
 
+	void OnCollisionStay(Collision col){
+		foreach (ContactPoint contact in col.contacts) {
+			if (contact.otherCollider.name.Contains ("mummy_medium")) {
+				cam.transform.Rotate (1,0,1);
+				damage += 6;
+			}
+		}
+		hp -= damage;
+	}
+
 	// Use this for initialization
 	void Start () {
 		anim = GetComponent<Animator> ();
+		cam = GameObject.Find ("Main Camera");
         healing = GetComponentInChildren<ParticleSystem>();
         healing.Stop();
 		damage = 0;
@@ -27,11 +42,13 @@ public class villian_script : MonoBehaviour {
 		kick = false;
         turn = new Vector3();
         slide = false;
+		power = false;
+		hp = 10000;
 	}
 
     void Update()
     {
-        Collisions();
+		reset ();
         if (Input.GetKeyDown(KeyCode.Z))
         {
             kick = true;
@@ -43,11 +60,9 @@ public class villian_script : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             Healing_Start();
+			power = true;
         }
-        if (Input.GetKeyUp(KeyCode.Alpha1))
-        {
-            Healing_End();
-        }
+
 
         updateParam();
 
@@ -55,11 +70,8 @@ public class villian_script : MonoBehaviour {
 
     // Update is called once per frame
     void FixedUpdate () {
-		reset ();
 		speed = Input.GetAxis ("Vertical");
 		turning = Input.GetAxis ("Horizontal");
-
-		Collisions ();
        
             if (Input.GetKeyDown(KeyCode.Z))
             {
@@ -70,7 +82,7 @@ public class villian_script : MonoBehaviour {
                 slide = true;
             }
 
-            if (!(anim.GetCurrentAnimatorStateInfo(0).IsName("WAIT04") || anim.GetCurrentAnimatorStateInfo(0).IsName("DAMAGED01") || anim.GetCurrentAnimatorStateInfo(0).IsName("DAMAGED00")))
+		if (!(anim.GetCurrentAnimatorStateInfo(0).IsName("WAIT04") || anim.GetCurrentAnimatorStateInfo(0).IsName("DAMAGED01") || anim.GetCurrentAnimatorStateInfo(0).IsName("DAMAGED00") || anim.GetCurrentAnimatorStateInfo(0).IsName("WIN00")))
             {
                 if (speed > 0)
                 {
@@ -97,55 +109,27 @@ public class villian_script : MonoBehaviour {
 
 
 	void updateParam(){
-	
+		hp -= damage;
 		anim.SetBool ("Kick",kick);
 		anim.SetFloat ("Direction", turning, 0.25f, Time.deltaTime);
 		anim.SetFloat ("Speed", speed);
 		anim.SetBool ("Slide", slide);
-		anim.SetInteger ("Damage", damage);
+		if (hp <= 0) {
+			hp = 10000;
+			transform.position = new Vector3 (-157f, 1.51f, -161.5f);
+		}
+		anim.SetBool ("Power", power);
+		damage = 0;
 	}
 
-	void Collisions(){
-		// light damage
-		if (Input.GetKeyDown (KeyCode.Q)) {
-			if (anim.GetCurrentAnimatorStateInfo (0).IsName ("SLIDE00") || anim.GetCurrentAnimatorStateInfo (0).IsName ("WAIT04")) {
-				damage = 10;
-			} else {
-				damage = 3;
-			}
-		}
-		// heavy damage
-		if (Input.GetKeyDown (KeyCode.E)) {
-			damage = 10;
-		}
-	}
     void Healing_Start()
     {
-        healing.Play();
-        healing.enableEmission = false;
-    }
-    void Healing_End()
-    {
-        healing.enableEmission = false;
-        healing.Stop();
+		healing.time = 3.0f;
+		healing.Play();    
     }
     void reset (){
-		damage = 0;
 		kick = false;
 		slide = false;
+		power = false;
 	}
-
-   
-
-    public void collision_trigger_true()
-    {
-        collision = true;
-    }
-
-    public void collision_trigger_false()
-    {
-        collision = false;
-    }
-
-  
 }
