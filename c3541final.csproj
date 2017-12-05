@@ -79,8 +79,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Akiba_Battle\query_ani_con.cs" />
-    <Compile Include="Assets\collision_building.cs" />
-    <Compile Include="Assets\dude_script.cs" />
+    <Compile Include="Assets\Chibi Mummy\Misc\Scripts\buttonControl_script.cs" />
+    <Compile Include="Assets\Chibi Mummy\Misc\Scripts\CharMovement.cs" />
+    <Compile Include="Assets\mummy_script.cs" />
+    <Compile Include="Assets\mummy_script_small.cs" />
     <Compile Include="Assets\Particle Ribbon by Moonflower Carnivore\Scripts\randomParticleRotation.cs" />
     <Compile Include="Assets\Particle Ribbon by Moonflower Carnivore\Scripts\ReverseNormals.cs" />
     <Compile Include="Assets\Particle Ribbon by Moonflower Carnivore\Scripts\rotation.cs" />
@@ -94,6 +96,7 @@
     <Compile Include="Assets\ZRNAssets\PQAssets\Query-Chan\Scripts\QuerySoundController.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\Chibi Mummy\readme.txt" />
     <None Include="Assets\Particle Ribbon by Moonflower Carnivore\Shaders\Particle Alpha Blend HDR.shader" />
     <None Include="Assets\Particle Ribbon by Moonflower Carnivore\readme_Simple_Particle_Ribbon.txt" />
     <None Include="Assets\UnityChan\Models\UnityChanShader\Shader\Unitychan_chara_akarami_blend.shader" />

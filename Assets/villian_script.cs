@@ -22,10 +22,13 @@ public class villian_script : MonoBehaviour {
 	void OnCollisionStay(Collision col){
 		foreach (ContactPoint contact in col.contacts) {
 			if (contact.otherCollider.name.Contains ("mummy_medium")) {
-				cam.transform.Rotate (1,0,1);
-				damage += 6;
+				damage += 2;
 			}
-		}
+            if (contact.otherCollider.name.Contains("mummy_small"))
+            {
+                damage += 1;
+            }
+        }
 		hp -= damage;
 	}
 
@@ -43,7 +46,7 @@ public class villian_script : MonoBehaviour {
         turn = new Vector3();
         slide = false;
 		power = false;
-		hp = 10000;
+		hp = 1000;
 	}
 
     void Update()
@@ -115,7 +118,7 @@ public class villian_script : MonoBehaviour {
 		anim.SetFloat ("Speed", speed);
 		anim.SetBool ("Slide", slide);
 		if (hp <= 0) {
-			hp = 10000;
+			hp = 1000;
 			transform.position = new Vector3 (-157f, 1.51f, -161.5f);
 		}
 		anim.SetBool ("Power", power);

@@ -12,7 +12,7 @@ public class mummy_script : MonoBehaviour {
 	bool atk;
 	// Use this for initialization
 	void Start () {
-		hp = 10;
+		hp = 50;
 		anim = GetComponent<Animator> ();
 		walk = false;
 		speed = 1f;
@@ -32,22 +32,26 @@ public class mummy_script : MonoBehaviour {
 			dis = Mathf.Sqrt (dis);
 			print (dis);
 			if (kicked && dis < 0.7f) {
-				hp -= 3;
+				hp -= 10;
 
 			}
 			if (powered && dis < 3.0f) {
-				hp -= 20;
+				hp -= 30;
 
 			}
 
-			if (dis <= 10f && !atk) {
+			if (dis <= 8f && !atk) {
 				walk = true;
 				mov = new Vector3 (0, 0, speed * .006f);
 				transform.Translate (mov);
-			} else {
+                transform.LookAt(GameObject.Find("unitychan").transform);
+            } else if (atk)
+            {
+                transform.LookAt(GameObject.Find("unitychan").transform);
+            }
+            else {
 				walk = false;
 			}
-			transform.LookAt (GameObject.Find ("unitychan").transform);
 
 			if (hp < 0 && !dead) {
 				print ("dead");
