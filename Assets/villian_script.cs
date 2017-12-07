@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class villian_script : MonoBehaviour {
-	public int hp;
-
+	public float hp;
+    private HealthBar healthB;
 	public Animator anim;
 	GameObject cam;
     public ParticleSystem healing;
@@ -14,7 +14,7 @@ public class villian_script : MonoBehaviour {
 	public bool power;
 	bool slide;
     public bool collision;
-	public int damage;
+	public float damage;
 	Vector3 mov;
     Vector3 turn;
     public Vector3 contact;
@@ -34,7 +34,8 @@ public class villian_script : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		anim = GetComponent<Animator> ();
+        healthB = GetComponent<HealthBar>();
+        anim = GetComponent<Animator> ();
 		cam = GameObject.Find ("Main Camera");
         healing = GetComponentInChildren<ParticleSystem>();
         healing.Stop();
@@ -46,11 +47,12 @@ public class villian_script : MonoBehaviour {
         turn = new Vector3();
         slide = false;
 		power = false;
-		hp = 1000;
+		hp = 150;
 	}
 
     void Update()
     {
+        
 		reset ();
         if (Input.GetKeyDown(KeyCode.Z))
         {
@@ -66,8 +68,9 @@ public class villian_script : MonoBehaviour {
 			power = true;
         }
 
-
+       
         updateParam();
+        
 
     }
 
@@ -110,15 +113,29 @@ public class villian_script : MonoBehaviour {
         
 	}
 
+    void healthBarWork() {
+        // update healthBar parameter
+        healthB.currentHealth = hp;
+
+        float actualDMG = damage * Time.deltaTime;
+        hp -= actualDMG;
+        healthB.takeDamage(actualDMG);
+        healthB.Heal(15  * Time.deltaTime);
+        this.hp += 15 * Time.deltaTime;
+        if (this.hp > 150) {
+            this.hp = 150f;
+        }
+    }
 
 	void updateParam(){
-		hp -= damage;
-		anim.SetBool ("Kick",kick);
+        healthBarWork();
+
+        anim.SetBool ("Kick",kick);
 		anim.SetFloat ("Direction", turning, 0.25f, Time.deltaTime);
 		anim.SetFloat ("Speed", speed);
 		anim.SetBool ("Slide", slide);
 		if (hp <= 0) {
-			hp = 1000;
+			hp = 150;
 			transform.position = new Vector3 (-157f, 1.51f, -161.5f);
 		}
 		anim.SetBool ("Power", power);

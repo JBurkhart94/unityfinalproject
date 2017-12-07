@@ -34,7 +34,7 @@ public class mummy_script_small : MonoBehaviour
             Vector3 my_pos = this.transform.position;
             float dis = Mathf.Pow((unitychan_pos.x - my_pos.x), 2) + Mathf.Pow((unitychan_pos.z - my_pos.z), 2);
             dis = Mathf.Sqrt(dis);
-            print(dis);
+            //print(dis);
             if (kicked && dis < 0.7f)
             {
                 hp -= 10;
