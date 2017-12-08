@@ -51,26 +51,22 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Akiba_Battle\query_ani_con.cs" />
      <Compile Include="Assets\Chibi Mummy\Misc\Scripts\buttonControl_script.cs" />
      <Compile Include="Assets\Chibi Mummy\Misc\Scripts\CharMovement.cs" />
+     <Compile Include="Assets\HealthBar.cs" />
+     <Compile Include="Assets\mummy_army.cs" />
      <Compile Include="Assets\mummy_script.cs" />
+     <Compile Include="Assets\mummy_script_small.cs" />
      <Compile Include="Assets\Particle Ribbon by Moonflower Carnivore\Scripts\randomParticleRotation.cs" />
      <Compile Include="Assets\Particle Ribbon by Moonflower Carnivore\Scripts\ReverseNormals.cs" />
      <Compile Include="Assets\Particle Ribbon by Moonflower Carnivore\Scripts\rotation.cs" />
+     <Compile Include="Assets\Score_board.cs" />
      <Compile Include="Assets\villian_script.cs" />
      <Compile Include="Assets\ZRNAssets\Cars\Scripts\AICarMove.cs" />
-     <Compile Include="Assets\ZRNAssets\PQAssets\Query-Chan\Scripts\CameraAction.cs" />
-     <Compile Include="Assets\ZRNAssets\PQAssets\Query-Chan\Scripts\GUIController.cs" />
-     <Compile Include="Assets\ZRNAssets\PQAssets\Query-Chan\Scripts\GUIControllerFlying.cs" />
-     <Compile Include="Assets\ZRNAssets\PQAssets\Query-Chan\Scripts\QueryAnimationController.cs" />
-     <Compile Include="Assets\ZRNAssets\PQAssets\Query-Chan\Scripts\QueryEmotionalController.cs" />
-     <Compile Include="Assets\ZRNAssets\PQAssets\Query-Chan\Scripts\QuerySoundController.cs" />
      <None Include="Assets\UnityChan\Models\UnityChanShader\Shader\Unitychan_chara_eye.shader" />
      <None Include="Assets\UnityChan\Models\UnityChanShader\Shader\Unitychan_chara_fuku.shader" />
      <None Include="Assets\ZRNAssets\license_en.txt" />
      <None Include="Assets\Particle Ribbon by Moonflower Carnivore\Shaders\Particle Alpha Blend HDR.shader" />
-     <None Include="Assets\ZRNAssets\PQAssets\Query-Chan\Shaders\PQ_Skin.shader" />
      <None Include="Assets\ZRNAssets\license_jp.txt" />
      <None Include="Assets\ZRNAssets\Skyboxes\_skybox info.txt" />
      <None Include="Assets\UnityChan\license.txt" />
@@ -79,16 +75,13 @@
      <None Include="Assets\ZRNAssets\005339_08932_25_14\Shaders\su_Double_and_Clip.shader" />
      <None Include="Assets\UnityChan\Models\UnityChanShader\Shader\Unitychan_chara_hair_ds.shader" />
      <None Include="Assets\UnityChan\Models\UnityChanShader\Shader\Unitychan_chara_akarami_blend.shader" />
-     <None Include="Assets\ZRNAssets\PQAssets\license_jp.txt" />
      <None Include="Assets\UnityChan\Models\UnityChanShader\Shader\Unitychan_chara_hair.shader" />
-     <None Include="Assets\ZRNAssets\PQAssets\Query-Chan\Shaders\PQ_TransBlue.shader" />
      <None Include="Assets\UnityChan\Stage\Shader\AlphaMask.shader" />
      <None Include="Assets\UnityChan\Models\UnityChanShader\Shader\Unitychan_chara_eyelash_blend.shader" />
      <None Include="Assets\UnityChan\Models\UnityChanShader\Shader\Unitychan_chara_hada.shader" />
      <None Include="Assets\Chibi Mummy\readme.txt" />
      <None Include="Assets\ZRNAssets\005339_08932_25_14\Shaders\su_VertexCol_1UV_Single.shader" />
      <None Include="Assets\UnityChan\Models\UnityChanShader\Shader\Unitychan_chara_hada_blend.shader" />
-     <None Include="Assets\ZRNAssets\PQAssets\license_en.txt" />
      <None Include="Assets\Particle Ribbon by Moonflower Carnivore\readme_Simple_Particle_Ribbon.txt" />
      <None Include="Assets\ZRNAssets\005339_08932_25_14\Documents\ReadMe.txt" />
  <Reference Include="UnityEngine.UI">
