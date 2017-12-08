@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class mummy_script : MonoBehaviour {
+    
 	public int hp;
 	public Animator anim;
 	public bool walk;
@@ -20,12 +21,19 @@ public class mummy_script : MonoBehaviour {
 		atk = false;
 
 	}
+
+
+
 	void FixedUpdate(){
 		if (!dead) {
 			GameObject unity_chan = GameObject.Find ("unitychan");
 			Vector3 unitychan_pos = unity_chan.transform.position;
 			villian_script dam = (villian_script)unity_chan.GetComponent (typeof(villian_script));
-			bool kicked = dam.kick;
+            Score_board score = (Score_board)unity_chan.GetComponent<Score_board>();
+            GameObject mumm_gen = GameObject.Find("MummyGenerator");
+            mummy_army mum_gen = (mummy_army)mumm_gen.GetComponent<mummy_army>();
+
+            bool kicked = dam.kick;
 			bool powered = dam.power;
 			Vector3 my_pos = this.transform.position;
 			float dis = Mathf.Pow ((unitychan_pos.x - my_pos.x), 2) + Mathf.Pow ((unitychan_pos.z - my_pos.z), 2);
@@ -40,7 +48,7 @@ public class mummy_script : MonoBehaviour {
 
 			}
 
-			if (dis <= 8f && !atk) {
+			if (dis <= 15f) {
 				walk = true;
 				mov = new Vector3 (0, 0, speed * .006f);
 				transform.Translate (mov);
@@ -58,8 +66,9 @@ public class mummy_script : MonoBehaviour {
 				dead = true;
 				anim.SetBool ("Dead", dead);
 				Destroy (this.gameObject, this.GetComponent<Animator> ().GetCurrentAnimatorStateInfo (0).length + 0.7f);
-
-			}
+                score.updatePoints(3);
+                mum_gen.mum_count -= 1;
+            }
 			updateParams ();
 			attackLogic (dis);
 		}

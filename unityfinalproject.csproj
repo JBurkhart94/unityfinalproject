@@ -85,11 +85,13 @@
     <Compile Include="Assets\Chibi Mummy\Misc\Scripts\buttonControl_script.cs" />
     <Compile Include="Assets\Chibi Mummy\Misc\Scripts\CharMovement.cs" />
     <Compile Include="Assets\HealthBar.cs" />
+    <Compile Include="Assets\mummy_army.cs" />
     <Compile Include="Assets\mummy_script.cs" />
     <Compile Include="Assets\mummy_script_small.cs" />
     <Compile Include="Assets\Particle Ribbon by Moonflower Carnivore\Scripts\randomParticleRotation.cs" />
     <Compile Include="Assets\Particle Ribbon by Moonflower Carnivore\Scripts\ReverseNormals.cs" />
     <Compile Include="Assets\Particle Ribbon by Moonflower Carnivore\Scripts\rotation.cs" />
+    <Compile Include="Assets\Score_board.cs" />
     <Compile Include="Assets\villian_script.cs" />
     <Compile Include="Assets\ZRNAssets\Cars\Scripts\AICarMove.cs" />
     <Compile Include="Assets\ZRNAssets\PQAssets\Query-Chan\Scripts\CameraAction.cs" />

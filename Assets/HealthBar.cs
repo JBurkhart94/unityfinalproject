@@ -33,7 +33,7 @@ public class HealthBar : MonoBehaviour {
         if (currentHealth < 0) {
             currentHealth = 0;
         }
-        Debug.Log("RIP");
+        //Debug.Log("RIP");
     }
 
     public void Heal(float heal) {
@@ -41,6 +41,6 @@ public class HealthBar : MonoBehaviour {
         if (currentHealth > 150) {
             currentHealth = 150;
         }
-        Debug.Log("Full");
+        //Debug.Log("Full");
     }
 }

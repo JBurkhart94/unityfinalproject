@@ -28,7 +28,11 @@ public class mummy_script_small : MonoBehaviour
         {
             GameObject unity_chan = GameObject.Find("unitychan");
             Vector3 unitychan_pos = unity_chan.transform.position;
+            GameObject mumm_gen = GameObject.Find("MummyGenerator");
+            mummy_army mum_gen = (mummy_army)mumm_gen.GetComponent<mummy_army>();
             villian_script dam = (villian_script)unity_chan.GetComponent(typeof(villian_script));
+            Score_board score = (Score_board)unity_chan.GetComponent<Score_board>();
+           
             bool kicked = dam.kick;
             bool powered = dam.power;
             Vector3 my_pos = this.transform.position;
@@ -46,7 +50,7 @@ public class mummy_script_small : MonoBehaviour
 
             }
 
-            if (dis <= 12f && !atk)
+            if (dis <= 15f)
             {
                 walk = true;
                 mov = new Vector3(0, 0, speed * .006f);
@@ -68,7 +72,8 @@ public class mummy_script_small : MonoBehaviour
                 dead = true;
                 anim.SetBool("Dead", dead);
                 Destroy(this.gameObject, this.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length + 0.7f);
-
+                score.updatePoints(1);
+                mum_gen.mum_small_count -= 1;
             }
             updateParams();
             attackLogic(dis);

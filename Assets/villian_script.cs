@@ -22,14 +22,14 @@ public class villian_script : MonoBehaviour {
 	void OnCollisionStay(Collision col){
 		foreach (ContactPoint contact in col.contacts) {
 			if (contact.otherCollider.name.Contains ("mummy_medium")) {
-				damage += 2;
+				damage += 7;
 			}
             if (contact.otherCollider.name.Contains("mummy_small"))
             {
-                damage += 1;
+                damage += 4;
             }
         }
-		hp -= damage;
+		hp -= damage * Time.deltaTime;
 	}
 
 	// Use this for initialization
@@ -137,10 +137,16 @@ public class villian_script : MonoBehaviour {
 		if (hp <= 0) {
 			hp = 150;
 			transform.position = new Vector3 (-157f, 1.51f, -161.5f);
+            this.GetComponent<Score_board>().Reset();
+
 		}
 		anim.SetBool ("Power", power);
 		damage = 0;
-	}
+        Vector3
+        pos = new Vector3(-157f, 1.51f, -161.5f);
+
+
+    }
 
     void Healing_Start()
     {
